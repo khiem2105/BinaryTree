@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "pile_list.h"
 
 struct nut 
 {
@@ -16,6 +17,51 @@ struct node
 };
 
 typedef struct node node;
+//Duyệt cây đệ quy
+//Gốc-trái-phải
+void prefixe(nut *T) {
+    if(T != NULL) {
+        printf("%d-",T->info);
+        prefixe(T->Left);
+        prefixe(T->Right);
+    }
+}
+//Trái-Gốc-phải
+void infixe(nut *T) {
+    if(T != NULL) {
+        infixe(T->Left);
+        printf("%d-",T->info);
+        infixe(T->Right);
+    }
+}
+//Trái-phải-gốc
+void postfixe(nut *T) {
+    if(T != NULL) {
+        postfixe(T->Left);
+        postfixe(T->Right);
+        printf("%d-",T->info);
+    }
+} 
+//Duyệt cây không đệ quy
+void prefixe_nonRecursive(nut *T) {
+    pile_liste p;
+    initPile(&p);
+    pushPile(&p,T->info);
+    nut *temp = T;
+    while(!(pileVide(p))) {
+        printf("%d-",popPile(&p));
+        if(T->Right != NULL) {
+            pushPile(&p, T->Right->info);
+            T = T->Right;
+        }
+        if(T->Left != NULL) {
+            pushPile(T)
+        }
+    }
+}
+void test(nut *T) {
+    T->Left->info = 1;
+}
 //*****Câu 1*****//
 int ChieuCao(nut *T)
 {
