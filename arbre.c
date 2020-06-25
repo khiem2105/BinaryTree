@@ -13,7 +13,7 @@ int main()
     // prefixe(T);
     // infixe(T);
     // postfixe(T);
-    infixe(T);
+    infixeNonRecursive(T);
 }
 //     printf("Cau 1:\n");
 //     printf("Chieu cao:%d\n",ChieuCao(T));

@@ -114,8 +114,15 @@ void infixeNonRecursive(nut *T) {
     }
     while(!pileVide(p)) {
         current = popPile(&p);
+        printf("%d-",current->info);
+        current = current->Right;
+        while(current != NULL) {
+            pushPile(&p,current);
+            current = current->Left;
+        }
     }
 }
+//
 //*****Câu 1*****//
 int ChieuCao(nut *T)
 {
