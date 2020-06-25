@@ -13,7 +13,9 @@ int main()
     // prefixe(T);
     // infixe(T);
     // postfixe(T);
-    infixeNonRecursive(T);
+    //infixeNonRecursive(T);
+    postfixe(T);
+    postfixNonRecursive(T);
 }
 //     printf("Cau 1:\n");
 //     printf("Chieu cao:%d\n",ChieuCao(T));

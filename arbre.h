@@ -122,7 +122,23 @@ void infixeNonRecursive(nut *T) {
         }
     }
 }
-//
+//Trái-phải-gốc
+void postfixNonRecursive(nut *T) {
+    nut *current = T;
+    pile_liste p1,p2;
+    initPile(&p1); initPile(&p2);
+    pushPile(&p1,current);
+    while(!pileVide(p1)) {
+        current = popPile(&p1);
+        pushPile(&p2,current);
+        if(current->Left != NULL)
+            pushPile(&p1,current->Left);
+        if(current->Right != NULL) 
+            pushPile(&p1,current->Right);    
+    }
+    while(!pileVide(p2))
+        printf("%d-",popPile(&p2)->info);
+}
 //*****Câu 1*****//
 int ChieuCao(nut *T)
 {
