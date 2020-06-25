@@ -3,7 +3,7 @@
 int main()
 {
     nut *T=NULL;
-    int i,n=4,valeur;
+    int i,n=6,valeur;
     for(i=0;i<=n;i++)
     {
         printf("Nhap gia tri cua la:\n"); scanf("%d",&valeur);
@@ -13,7 +13,7 @@ int main()
     // prefixe(T);
     // infixe(T);
     // postfixe(T);
-    prefixe_nonRecursive(T);
+    infixe(T);
 }
 //     printf("Cau 1:\n");
 //     printf("Chieu cao:%d\n",ChieuCao(T));

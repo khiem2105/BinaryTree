@@ -1,22 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "pile_list.h"
-
+//Cây
 struct nut 
 {
     int info;
     struct nut *Left, *Right;
 };
-
 typedef struct nut nut;
-
+//Danh sách
 struct node
 {
     int info;
     struct node* next;
 };
-
 typedef struct node node;
+//Stack
+struct cellule
+{
+    /* data */
+    nut *data;
+    struct cellule *precedent;
+};
+typedef struct cellule cellule;
+//Xử lý stack
+typedef struct 
+{
+    cellule* tete;
+}pile_liste;
+
+void initPile(pile_liste* p)
+{
+    p->tete=NULL;
+}
+
+int pileVide(pile_liste p)
+{
+   return(p.tete==NULL);
+}
+
+void pushPile(pile_liste *p,nut *new)
+{
+    cellule *q;
+    q=(cellule*)malloc(sizeof(cellule));
+    q->data = new;
+    q->precedent = p->tete;
+    p->tete=q;
+
+}
+
+nut* popPile(pile_liste *p)
+{
+    if(pileVide(*p)) 
+        exit;
+    else
+    {
+        cellule *q;
+        nut* pop;
+        q = p->tete;
+        pop = q->data;
+        p->tete = q->precedent;
+        free(q);
+        return pop;
+    }
+}
 //Duyệt cây đệ quy
 //Gốc-trái-phải
 void prefixe(nut *T) {
@@ -43,24 +89,32 @@ void postfixe(nut *T) {
     }
 } 
 //Duyệt cây không đệ quy
-void prefixe_nonRecursive(nut *T) {
+//Gốc-trái-phải
+void prefixeNonRecursive(nut *T) {
     pile_liste p;
     initPile(&p);
-    pushPile(&p,T->info);
-    nut *temp = T;
-    while(!(pileVide(p))) {
-        printf("%d-",popPile(&p));
-        if(T->Right != NULL) {
-            pushPile(&p, T->Right->info);
-            T = T->Right;
-        }
-        if(T->Left != NULL) {
-            pushPile(T)
-        }
+    pushPile(&p,T);
+    while(!pileVide(p)) {
+        nut *temp = popPile(&p);
+        if(temp->Right != NULL)
+            pushPile(&p,temp->Right);
+        if(temp->Left != NULL)
+            pushPile(&p,temp->Left);
+        printf("%d-",temp->info);        
     }
 }
-void test(nut *T) {
-    T->Left->info = 1;
+//Trái gốc phải
+void infixeNonRecursive(nut *T) {
+    pile_liste p;
+    initPile(&p);
+    nut *current = T;
+    while(current != NULL) {
+        pushPile(&p,current);
+        current = current->Left;
+    }
+    while(!pileVide(p)) {
+        current = popPile(&p);
+    }
 }
 //*****Câu 1*****//
 int ChieuCao(nut *T)
