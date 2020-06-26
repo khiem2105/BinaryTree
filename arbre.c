@@ -2,20 +2,29 @@
 
 int main()
 {
-    nut *T=NULL;
-    int i,n=6,valeur;
+    nut *T1=NULL;
+    int i,n=3,valeur;
     for(i=0;i<=n;i++)
     {
         printf("Nhap gia tri cua la:\n"); scanf("%d",&valeur);
-        BoSung(&T,valeur);
+        BoSung(&T1,valeur);
     }
-
+    nut *T2=NULL;
+    for(i=0;i<=n;i++)
+    {
+        printf("Nhap gia tri cua la:\n"); scanf("%d",&valeur);
+        BoSung(&T2,valeur);
+    }
+    if(checkSimilaireTree(T1,T2))
+        printf("Similaire");
     // prefixe(T);
     // infixe(T);
     // postfixe(T);
     //infixeNonRecursive(T);
-    postfixe(T);
-    postfixNonRecursive(T);
+    // postfixe(T);
+    // postfixNonRecursive(T);
+    
+
 }
 //     printf("Cau 1:\n");
 //     printf("Chieu cao:%d\n",ChieuCao(T));

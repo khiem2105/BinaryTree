@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 //Cây
 struct nut 
 {
@@ -454,4 +455,14 @@ void heapsortTree(nut **T)
             }
         }
     }
+}
+//Kiem tra 2 cay co cau truc giong nhau
+bool checkSimilaireTree(nut *T1, nut *T2) {
+    //Empty trees are equal
+    if(T1 == NULL && T2 == NULL)
+        return true;
+    if((T1 == NULL && T2 != NULL) || (T1 != NULL && T2 == NULL))
+        return false;
+    return (checkSimilaireTree(T1->Left,T2->Left) && checkSimilaireTree(T1->Right,T2->Right));        
+
 }
